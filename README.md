@@ -5,26 +5,53 @@ A simple API to teach you about a RESTful.
 
 This API is made with ES6 (ES2015) for more information on ES6 check [Babel](http://babeljs.io/).
 
-Requirements
-============
-
-- NodeJS v5.0.0 or higher.
-- MongoDB v3.2.x or higher.
-
 Installation
 ============
 
-1. Install the depenencies with `npm install`.
-2. Run the API with one of the following commands:
-   - `npm start`
-   - `babel-node index.js`
+1. Install MongoDB.
+2. Install NodeJS (at least Node v5.0.0 or greater).
+3. Clone the repository with: `git clone https://github.com/sjoerdthijsse/demo-api.git`.
+4. Install `gulp` globally with `[sudo] npm install -g gulp`.
+5. Install dependencies of the demo-api with `cd demo-api` and `npm install`.
+6. Build the ES5 code with `gulp build`.
+7. Run the demo-api with `npm start`.
 
-The API will be started on `127.0.0.1` on port `5000`.
+The API will be started on `127.0.0.1` on port `5001`.
+
+Folder Structure
+================
+
+```
+.
+├──build                                   # Directory holding all the old ES5 code.
+├──src                                     # Directory holding all the new ES6 code.
+    ├── config                             # Directory with various configuration files for the API.
+        ├── global.js                      # Object with variables user throughout the API.
+        ├── logger.js                      # Configuration for Console and ExpressJS logging with Winston.
+        ├── routes.js                      # Configuration for the API endpoints.
+        └── setup.js                       # Configuration for MongoDB connection and ExpressJS middleware.
+    ├── controllers                        # Directory for the controllers.
+        └── users.js                       # Controller for the user model.
+    ├── logs                               # Output directory for the log files.
+        └── demo-api-1462379396135.log     # Example of a log file.
+    ├── models                             # Directory for the models.
+        └── User.js                        # The user model.
+    ├── demo-api-user1.json                # Example input of a user.
+    ├── demo-api-user2.json                # Example input of a user.
+    ├── index.js                           # The `main` of the API.
+    └── util.js                            # Factory function holding functions used throughout the api.
+├── node_modules                           # Directory with depenencies for the API.
+├── .babelrc                               # Configuration file for Babel.
+├── .gitignore                             # Gitignore file.
+├── gulpfile.babel.js                      # Gulpfile for system tasks.
+├── package.json                           # File with metadata relevant to the API.
+└── README.md                              # Git README.md file.
+```
 
 Routes
 ======
 
-**POST - `http://127.0.0.1:5000/`**
+**POST - `http://127.0.0.1:5001/`**
 
 This route will create a new user.
 
@@ -39,12 +66,13 @@ Example of the body for the POST request:
 }
 ```
 
-**GET - `http://127.0.0.1:5000/{username}`**
+**GET - `http://127.0.0.1:5001/{username}`**
 
 This route will fetch the user matching the given username.
 
-Example of the output from the GET requist:
-```
+Example of the output from the GET request:
+
+```javascript
 {
   "_id": "572a1ab58b5c6d51638def85",
   "first_name": "John",
@@ -55,12 +83,13 @@ Example of the output from the GET requist:
 }
 ```
 
-**PUT - `http://127.0.0.1:5000/{username}`**
+**PUT - `http://127.0.0.1:5001/{username}`**
 
 This route will update the user matching the given username.
 
 Example of the body for the POST request:
-```
+
+```javascript
 {
     "first_name": "John",
     "last_name": "Williams",
@@ -70,35 +99,9 @@ Example of the body for the POST request:
 }
 ```
 
-**DELETE - `http://127.0.0.1:5000/{username}`**
+**DELETE - `http://127.0.0.1:5001/{username}`**
 
 This route will remove the user matching the given username.
-
-Folder Structure
-================
-
-```
-.
-├── config                             # Directory with various configuration files for the API.
-    ├── global.js                      # Object with variables user throughout the API.
-    ├── logger.js                      # Configuration for Console and ExpressJS logging with Winston.
-    ├── routes.js                      # Configuration for the API endpoints.
-    └── setup.js                       # Configuration for MongoDB connection and ExpressJS middleware.
-├── controllers                        # Directory for the controllers.
-    └── users.js                       # Controller for the user model.
-├── logs                               # Output directory for the log files.
-    └── demo-api-1462379396135.log     # Example of a log file.
-├── models                             # Directory for the models.
-    └── User.js                        # The user model.
-├── node_modules                       # Directory with depenencies for the API.
-├── .babelrc                           # Configuration file for Babel.
-├── .gitignore                         # Gitignore file.
-├── demo-api-user1.json                # Example input of a user.
-├── demo-api-user2.json                # Example input of a user.
-├── index.js                           # The `main` of the API.
-├── package.json                       # File with metadata relevant to the API.
-└── README.md                          # Git README.md file.
-```
 
 License
 =======
