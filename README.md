@@ -56,7 +56,7 @@ Routes
 This route will create a new user.
 
 Example of the body for the POST request:
-```
+```javascript
 {
     "first_name": "John",
     "last_name": "Smith",

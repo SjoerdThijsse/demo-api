@@ -32,3 +32,6 @@ node_modules
 
 # Generated documentation.
 docs
+
+# Old ES5 code
+build
